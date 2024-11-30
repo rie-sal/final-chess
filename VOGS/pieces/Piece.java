@@ -1,5 +1,5 @@
 package pieces;
-import VOGS.ChessBoard;
+// import VOGS.ChessBoard;
 
 
 public abstract class Piece {

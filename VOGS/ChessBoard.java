@@ -1,6 +1,6 @@
 // ChessBoard class (original, from pt 1)
 
-package VOGS;
+// package VOGS;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;

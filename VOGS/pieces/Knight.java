@@ -1,5 +1,5 @@
 package pieces;
-import VOGS.ChessBoard;
+// import VOGS.ChessBoard;
 
 public class Knight extends Piece {
     public Knight(String color) {super(color);}

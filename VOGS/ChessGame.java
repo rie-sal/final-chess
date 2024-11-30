@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 import pieces.*;
-import VOGS.ChessBoard; 
+// import VOGS.ChessBoard; 
 
 
 /**
