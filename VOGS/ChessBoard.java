@@ -64,21 +64,22 @@ public class ChessBoard {
  * has no parameters.
  */
 
-        public void printBoard() 
+        public void printBoard() throws IOException
         {
+            
                     // Initialize unscaled images into separate variables for white and black pieces
-            BufferedImage bigWKingImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_king.png"));
-            BufferedImage bigWQueenImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_queen.png"));
-            BufferedImage bigWBishopImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_bishop.png"));
-            BufferedImage bigWKnightImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_knight.png"));
-            BufferedImage bigWRookImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_rook.png"));
-            BufferedImage bigWPawnImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_pawn.png"));
-            BufferedImage bigBKingImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_king.png"));
-            BufferedImage bigBQueenImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_queen.png"));
-            BufferedImage bigBBishopImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_bishop.png"));
-            BufferedImage bigBKnightImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_knight.png"));
-            BufferedImage bigBRookImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_rook.png"));
-            BufferedImage bigBPawnImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_pawn.png"));
+            BufferedImage bigWKingImg = ImageIO.read(new File("assets/w_king.png"));
+            BufferedImage bigWQueenImg = ImageIO.read(new File("assets/w_queen.png"));
+            BufferedImage bigWBishopImg = ImageIO.read(new File("assets/w_bishop.png"));
+            BufferedImage bigWKnightImg = ImageIO.read(new File("assets/w_knight.png"));
+            BufferedImage bigWRookImg = ImageIO.read(new File("assets/w_rook.png"));
+            BufferedImage bigWPawnImg = ImageIO.read(new File("assets/w_pawn.png"));
+            BufferedImage bigBKingImg = ImageIO.read(new File("assets/b_king.png"));
+            BufferedImage bigBQueenImg = ImageIO.read(new File("assets/b_queen.png"));
+            BufferedImage bigBBishopImg = ImageIO.read(new File("assets/b_bishop.png"));
+            BufferedImage bigBKnightImg = ImageIO.read(new File("assets/b_knight.png"));
+            BufferedImage bigBRookImg = ImageIO.read(new File("assets/b_rook.png"));
+            BufferedImage bigBPawnImg = ImageIO.read(new File("assets/b_pawn.png"));
 
             // Place each buffered image into image array and scale them down to fit inside a 64x64 space
             Image imgs[] = new Image[12];
