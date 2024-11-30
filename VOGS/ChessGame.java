@@ -9,7 +9,8 @@ import pieces.*;
  * main brings all of the methods together to bring the chess game to life and takes input
  * from the user in order to update the chess board after each input(turn)
  *  */
-    public static void main(String[] args) {
+public class ChessGame{
+ public static void main(String[] args) {
 
         ChessBoard board = new ChessBoard();
         Scanner scanner = new Scanner(System.in);
@@ -56,3 +57,4 @@ import pieces.*;
     
         scanner.close();
     }
+}
