@@ -1,7 +1,7 @@
-// package pieces;
+package pieces;
 
 public abstract class Piece {
-    String color;
+    public String color;
     
     public Piece (String color) {
         this.color = color;

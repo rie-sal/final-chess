@@ -1,3 +1,5 @@
+package pieces;
+
 class Bishop extends Piece {
     /**
      * Constructor for the Bishop class.

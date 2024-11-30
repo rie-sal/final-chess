@@ -1,3 +1,4 @@
+package pieces;
 
 public class Pawn extends Piece {
    /**
@@ -46,6 +47,8 @@ public class Pawn extends Piece {
         }
         return false;
     }
+
+    
 
 /**
      * Returns the string representation of the pawn.
