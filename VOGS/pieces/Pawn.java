@@ -1,4 +1,5 @@
 package pieces;
+import VOGS.ChessBoard;
 
 public class Pawn extends Piece {
    /**

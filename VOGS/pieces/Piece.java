@@ -1,4 +1,6 @@
 package pieces;
+import VOGS.ChessBoard;
+
 
 public abstract class Piece {
     public String color;

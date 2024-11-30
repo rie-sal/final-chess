@@ -1,4 +1,5 @@
 package pieces;
+import VOGS.ChessBoard;
 
 public class Queen extends Piece {
     public Queen(String color) {super(color);}
