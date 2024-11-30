@@ -38,18 +38,6 @@
 
 
 
-// to compile:
-//              javac ChessGame.java
-
-// to run:
-//              java ChessGame
-
-// to delete the class files:
-//              rm -rf class-files
-
-//
-
-
 
 
 
