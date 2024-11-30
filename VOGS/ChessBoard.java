@@ -1,6 +1,6 @@
 // ChessBoard class (original, from pt 1)
 
-
+package VOGS;
 import java.util.Vector;
 import pieces.*;
 

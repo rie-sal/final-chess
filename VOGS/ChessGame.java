@@ -2,6 +2,7 @@
 
 import java.util.Scanner;
 import pieces.*;
+import VOGS.ChessBoard; 
 
 /**
  * main brings all of the methods together to bring the chess game to life and takes input

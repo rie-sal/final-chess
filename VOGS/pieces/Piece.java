@@ -20,7 +20,7 @@ public abstract class Piece {
      * @return True if the path is clear, false otherwise.
      */
    
-    /*
+    
     public boolean checkPath(int startX, int startY, int endX, int endY, Piece [][] board){
         
         if(startX == endX || startY == endY){
@@ -64,12 +64,12 @@ public abstract class Piece {
         }
         return true;    
     }
-*/
+
 
 
     // Add board as a parameter
     //Prototype for isValidMove for each indiviudal piece
-    abstract boolean isValidMove(int startX, int startY, int endX, int endY, Piece[][] board);
+    public abstract boolean isValidMove(int startX, int startY, int endX, int endY, Piece[][] board);
 
 /**
      * Abstract method to return a string representation of the piece.
