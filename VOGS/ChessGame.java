@@ -4,6 +4,7 @@ import java.util.Scanner;
 import pieces.*;
 import VOGS.ChessBoard; 
 
+
 /**
  * main brings all of the methods together to bring the chess game to life and takes input
  * from the user in order to update the chess board after each input(turn)

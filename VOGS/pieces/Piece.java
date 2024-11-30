@@ -4,6 +4,9 @@ import VOGS.ChessBoard;
 
 public abstract class Piece {
     public String color;
+    // int xPixelPos, yPixelPos; 
+    // LinkedList<Piece> pieceList;
+    // for the captured piece list, i think ^^
     
     public Piece (String color) {
         this.color = color;
@@ -19,6 +22,7 @@ public abstract class Piece {
      * @param board  The current chessboard
      * @return True if the path is clear, false otherwise.
      */
+    
    
     
     public boolean checkPath(int startX, int startY, int endX, int endY, Piece [][] board){

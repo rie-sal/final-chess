@@ -18,13 +18,7 @@ public class Knight extends Piece {
      */
     
     @Override
-    public boolean isValidMove(int startXPixel, int startYPixel, int endXPixel, int endYPixel, Piece[][] board) {
-        // Convert from pixel coordinates to board coordinates
-        int startX = startXPixel / 64;  // Board row (X)
-        int startY = startYPixel / 64;  // Board column (Y)
-        int endX = endXPixel / 64;      // Board row (X)
-        int endY = endYPixel / 64;      // Board column (Y)
-        
+    public boolean isValidMove(int startX, int startY, int endX, int endY, Piece[][] board) {
         int dx = Math.abs(startX - endX);
         int dy = Math.abs(startY - endY);
         return (dx == 2 && dy == 1) || (dx == 1 && dy == 2); // Knight moves in "L" shape
@@ -33,3 +27,12 @@ public class Knight extends Piece {
     @Override
     public String toString() {return color.equals("white") ? "wN" : "bN";}
 }
+
+    // possible parameter change to use pixels instead of coords, but probably not needed
+/*     public boolean isValidMove(int startXPixel, int startYPixel, int endXPixel, int endYPixel, Piece[][] board) {
+        // Convert from pixel coordinates to board coordinates
+        int startX = startXPixel / 64;  // Board row (X)
+        int startY = startYPixel / 64;  // Board column (Y)
+        int endX = endXPixel / 64;      // Board row (X)
+        int endY = endYPixel / 64;      // Board column (Y)
+ */

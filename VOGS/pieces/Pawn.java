@@ -25,19 +25,10 @@ public class Pawn extends Piece {
      */
 
     @Override
-    public boolean isValidMove(int startXPixel, int startYPixel, int endXPixel, int endYPixel, Piece[][] board) {
-        // Convert from pixel coordinates to board coordinates
-        int startX = startXPixel / 64;  // Board row (X)
-        int startY = startYPixel / 64;  // Board column (Y)
-        int endX = endXPixel / 64;      // Board row (X)
-        int endY = endYPixel / 64;      // Board column (Y)
-    
-        if (!this.checkPath(startX, startY, endX, endY, board)) {
-            return false;
-        }
-    
-        // Pawn movement logic
+    public boolean isValidMove(int startX, int startY, int endX, int endY, Piece[][] board) {
+        if (!this.checkPath(startX, startY, endX, endY, board)){return false;}
         if (color.equals("white")) {
+            // White pawns move up the board (to lower row numbers)
             if (startX == 6 && endX == 4 && startY == endY && board[endX][endY] == null) {
                 return true; // Move two squares from starting position
             } else if (endX == startX - 1 && startY == endY && board[endX][endY] == null) {
@@ -46,6 +37,7 @@ public class Pawn extends Piece {
                 return true; // Diagonal capture
             }
         } else {
+            // Black pawns move down the board (to higher row numbers)
             if (startX == 1 && endX == 3 && startY == endY && board[endX][endY] == null) {
                 return true; // Move two squares from starting position
             } else if (endX == startX + 1 && startY == endY && board[endX][endY] == null) {

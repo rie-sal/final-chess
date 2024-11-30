@@ -1,6 +1,19 @@
 // ChessBoard class (original, from pt 1)
 
 package VOGS;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.util.Vector;
 import pieces.*;
 
@@ -51,8 +64,109 @@ public class ChessBoard {
  * has no parameters.
  */
 
-        public void printBoard() {
+        public void printBoard() 
+        {
+                    // Initialize unscaled images into separate variables for white and black pieces
+            BufferedImage bigWKingImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_king.png"));
+            BufferedImage bigWQueenImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_queen.png"));
+            BufferedImage bigWBishopImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_bishop.png"));
+            BufferedImage bigWKnightImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_knight.png"));
+            BufferedImage bigWRookImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_rook.png"));
+            BufferedImage bigWPawnImg = ImageIO.read(new File("sourcepackages/chessgame/assets/w_pawn.png"));
+            BufferedImage bigBKingImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_king.png"));
+            BufferedImage bigBQueenImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_queen.png"));
+            BufferedImage bigBBishopImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_bishop.png"));
+            BufferedImage bigBKnightImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_knight.png"));
+            BufferedImage bigBRookImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_rook.png"));
+            BufferedImage bigBPawnImg = ImageIO.read(new File("sourcepackages/chessgame/assets/b_pawn.png"));
+
+            // Place each buffered image into image array and scale them down to fit inside a 64x64 space
+            Image imgs[] = new Image[12];
+            imgs[0] = bigWKingImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[1] = bigWQueenImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[2] = bigWBishopImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[3] = bigWKnightImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[4] = bigWRookImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[5] = bigWPawnImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[6] = bigBKingImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[7] = bigBQueenImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[8] = bigBBishopImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[9] = bigBKnightImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[10] = bigBRookImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+            imgs[11] = bigBPawnImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
+
+            JFrame frame = new JFrame();
+            frame.setBounds(10, 10, 512, 512);
+            frame.setUndecorated(true);
+
+            JPanel pn = new JPanel()
+            {
+                @Override
+                public void paint(Graphics g)
+                {
+                    boolean white = true;
+                    for (int y = 0; y < 8; y++)
+                    {
+                        for (int x = 0; x < 8; x++)
+                        {
+                            if(white)
+                            {
+                            g.setColor(Color.white);
+                            }
+                            else
+                            {
+                                g.setColor(Color.black);
+                            }
+                            g.fillRect(x*64, y*64, 64, 64);
+                            white = !white;
+                        }
+                        white = !white;
+                    }
+
+                    for (int rowIndex = 0; rowIndex < board.length; rowIndex++) 
+                    {
+                        for (int colIndex = 0; colIndex < board[rowIndex].length; colIndex++) 
+                        {
+                            Piece p = board[rowIndex][colIndex]; // Access the piece at the current row and column
+                            int ind = 0;
+                            if (p instanceof King)
+                            {
+                                ind = 0;
+                            }
+                            if (p instanceof Queen)
+                            {
+                                ind = 1;
+                            }
+                            if (p instanceof Bishop)
+                            {
+                                ind = 2;
+                            }
+                            if (p instanceof Knight)
+                            {
+                                ind = 3;
+                            }
+                            if (p instanceof Rook)
+                            {
+                                ind = 4;
+                            }
+                            if (p instanceof Pawn)
+                            {
+                                ind = 5;
+                            }
+                            if (!p.color.equalsIgnoreCase("white"))
+                            {
+                                ind += 6;
+                            }
+                        
+                        // Use rowIndex and colIndex for drawing instead of xPos and yPos
+                        g.drawImage(imgs[ind], colIndex * 64, rowIndex * 64, this);
+                        }
+                    }
+                }
+            };
+
             // Om's work here: Print the chessboard and alternate ## to represent squares.
+            /*
             System.out.println("  A  B  C  D  E  F  G  H");
             for (int i = 0; i < 8; i++) {
                 System.out.print((8 - i) + " ");
@@ -81,6 +195,8 @@ public class ChessBoard {
                 System.out.print(capturedPiecesB.get(i)+", ");
             }
             System.out.println(); 
+            */
+                
         }
 
 /**
