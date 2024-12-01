@@ -1,3 +1,4 @@
+
 // ChessBoard class (original, from pt 1)
 
 // package VOGS;
@@ -18,7 +19,10 @@ import java.util.Vector;
 import pieces.*;
 
 public class ChessBoard {
+    
     Piece[][] board = new Piece[8][8];
+    public static Piece selectedPiece=null;
+    public JFrame frame = new JFrame();
 
     public ChessBoard() {initializeBoard();}
 
@@ -103,7 +107,7 @@ public class ChessBoard {
             imgs[10] = bigBRookImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
             imgs[11] = bigBPawnImg.getScaledInstance(64,64, BufferedImage.SCALE_SMOOTH);
 
-            JFrame frame = new JFrame();
+            
             frame.setBounds(10, 10, 512, 512);
             frame.setUndecorated(true);
 
@@ -136,42 +140,149 @@ public class ChessBoard {
                         for (int colIndex = 0; colIndex < board[rowIndex].length; colIndex++) 
                         {
                             Piece p = board[rowIndex][colIndex]; // Access the piece at the current row and column
-                            int ind = 0;
-                            if (p instanceof King)
-                            {
-                                ind = 0;
+                            int ind = -1;
+                            if (p != null) {
+                                if (p instanceof King)
+                                {
+                                    ind = 0;
+                                }
+                                if (p instanceof Queen)
+                                {
+                                    ind = 1;
+                                }
+                                if (p instanceof Bishop)
+                                {
+                                    ind = 2;
+                                }
+                                if (p instanceof Knight)
+                                {
+                                    ind = 3;
+                                }
+                                if (p instanceof Rook)
+                                {
+                                    ind = 4;
+                                }
+                                if (p instanceof Pawn)
+                                {
+                                    ind = 5;
+                                }
+                                if (!p.color.equalsIgnoreCase("white"))
+                                {
+                                    ind += 6;
+                                }
                             }
-                            if (p instanceof Queen)
-                            {
-                                ind = 1;
-                            }
-                            if (p instanceof Bishop)
-                            {
-                                ind = 2;
-                            }
-                            if (p instanceof Knight)
-                            {
-                                ind = 3;
-                            }
-                            if (p instanceof Rook)
-                            {
-                                ind = 4;
-                            }
-                            if (p instanceof Pawn)
-                            {
-                                ind = 5;
-                            }
-                            if (!p.color.equalsIgnoreCase("white"))
-                            {
-                                ind += 6;
-                            }
-                        
                         // Use rowIndex and colIndex for drawing instead of xPos and yPos
-                        g.drawImage(imgs[ind], colIndex * 64, rowIndex * 64, this);
+                        if (ind >= 0){
+                            g.drawImage(imgs[ind], colIndex * 64, rowIndex * 64, this);
+                        }
                         }
                     }
                 }
             };
+
+                // Mouse listener for selecting and moving pieces
+            
+/////////////////////////////////////////////////////////////////////////// fix this shit
+            // int selectedX;
+            // int selectedY;
+            frame.add(pn);
+            // frame.addMouseMotionListener(new MouseMotionListener() {
+                
+            //     @Override
+
+            //     public void mouseDragged(MouseEvent e) 
+            //     {
+            //         // if(selectedPiece!=null){
+            //         //     selectedPiece.xPixelPos=e.getX()-32;
+            //         //     selectedPiece.yPixelPos=e.getY()-32;
+            //         //     frame.repaint();
+            //         // }
+                    
+            //     }
+                
+            //     //Changes mouse icon when hovering over a piece?
+            //     @Override
+            //     public void mouseMoved(MouseEvent e) 
+            //     {
+            //         // Piece pieceAt = getPieceAt(e.getX(), e.getY(), pieceList);
+            //         Piece pieceAt = board [(e.getX())/64][ (e.getY())/64 ];
+            //         if (pieceAt != null) {?
+            //             frame.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+            //         } else {
+            //             frame.setCursor(java.awt.Cursor.getDefaultCursor());
+            //         }
+            //     }
+            // });
+
+            
+            // //Checks for click
+            // frame.addMouseListener(new MouseListener() {
+            //     boolean click = false;
+            //     @Override
+            //     public void mouseClicked(MouseEvent e) {
+
+            //     }
+
+                
+            //     //Selects piece that the user clicks with their mouse
+            //     @Override
+            //     public void mousePressed(MouseEvent e) {
+            //     // System.out.println((getPieceAt(e.getX(), e.getY(), pieceList).isWhite?"white ":"balck ")+getPieceAt(e.getX(), e.getY(), pieceList).pieceType);
+            //         if (!click){ 
+            //             // selectedPiece=getPieceAt(e.getX(), e.getY(), pieceList);
+            //             selectedX = (e.getX())/64;
+            //             selectedY = (e.getY())/64;
+            //             selectedPiece = board [(e.getX())/64][ (e.getY())/64 ];
+            //         }
+                    
+            //     }
+
+
+
+
+            //     @Override
+            //     public void mouseReleased(MouseEvent e) {
+                    
+                    
+            //         if (selectedX == e.getX()/64 && selectedY == e.getY()/64 && click == false){
+            //             click = true;
+            //         }
+            //         else if (click){
+            //             click = false;
+            //         }
+            //         //selectedPiece.move(e.getX()/64, e.getY()/64);
+            //         movePiece(selectedX, selectedY, e.getX()/64, e.getY()/64, );
+
+            //         frame.repaint();
+                    
+
+            //         // boolean[] kingsPresent = {false, false};
+            //         // for (Piece p: pieceList){
+            //         //     if (p.pieceType.equals("king")){
+            //         //         kingsPresent[p.isWhite ? 0 : 1 ] = true;
+            //         //     }
+            //         // }
+            //         // if (!kingsPresent[0]){displayPopup("black");}
+            //         // else if(!kingsPresent[1]){displayPopup("white");}
+
+            //         if (!click){
+            //             selectedPiece = null;
+            //             selectedX = -1;
+            //             selectedY = -1;
+            //         }        
+            //     }
+
+
+            //     @Override
+            //     public void mouseEntered(MouseEvent e) {
+            //     }
+
+            //     @Override
+            //     public void mouseExited(MouseEvent e) {
+            //     }
+            // });
+////////////////////////////////////////////////////////////////
+
 
             // Om's work here: Print the chessboard and alternate ## to represent squares.
             /*
@@ -204,6 +315,11 @@ public class ChessBoard {
             }
             System.out.println(); 
             */
+
+            frame.add(pn);
+            frame.setSize(512, 512);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
                 
         }
 
