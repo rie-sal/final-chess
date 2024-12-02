@@ -93,7 +93,7 @@ public static void main(String[] args) throws IOException{
                         if (board.isCheckmated(currentPlayer[0].equals("black") ? "black" : "white")){
                             board.displayPopup(currentPlayer[0].equals("white") ? "black" : "white");
                         }
-                        if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("King in check!");}
+                        if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){board.displayPopup2();} //System.out.println("King in check!");
                         board.frame.repaint();
                     } 
                     else if (!board.movePiece(selectedY[0], selectedX[0], e.getY()/64 , e.getX()/64, currentPlayer[0])) {System.out.println("Invalid move. Try again.");}
