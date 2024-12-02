@@ -67,18 +67,6 @@ public class ChessBoard {
         board[7][7] = new Rook("white");
         for (int i = 0; i < 8; i++) {board[6][i] = new Pawn("white");}
 
-        // board[0][0] = new Rook("black");
-        // board[0][1] = new Rook("black");
-        // board[0][2] = new Rook("black");
-        // board[0][3] = new Rook("black");
-        // board[0][4] = new Rook("black");
-
-        // board[7][0] = new Rook("white");
-        // board[7][1] = new Rook("white");
-        // board[7][2] = new Rook("white");
-        // board[7][3] = new Rook("white");
-        // board[7][4] = new Rook("white");
-
     }
 /**
  * This method prints the board when called by the main function.
@@ -88,15 +76,9 @@ public class ChessBoard {
 
         public void printBoard() throws IOException
         {
-            /* 
-            try {
-                BufferedImage bigWKingImg = ImageIO.read(new File("VOGS/assets/w_king.png"));
-            } catch (IOException e) {
-                System.out.println("Error reading file: " + e.getMessage());
-                e.printStackTrace();
-            } */
+
             
-                    // Initialize unscaled images into separate variables for white and black pieces
+            // Initialize unscaled images into separate variables for white and black pieces
             BufferedImage bigWKingImg = ImageIO.read(new File("./assets/w_king.png"));
             BufferedImage bigWQueenImg = ImageIO.read(new File("./assets/w_queen.png"));
             BufferedImage bigWBishopImg = ImageIO.read(new File("./assets/w_bishop.png"));
@@ -197,145 +179,7 @@ public class ChessBoard {
                     }
                 }
             };
-
-                // Mouse listener for selecting and moving pieces
-            
-/////////////////////////////////////////////////////////////////////////// fix this shit
-            // int selectedX;
-            // int selectedY;
             frame.add(pn);
-            // frame.addMouseMotionListener(new MouseMotionListener() {
-                
-            //     @Override
-
-            //     public void mouseDragged(MouseEvent e) 
-            //     {
-            //         // if(selectedPiece!=null){
-            //         //     selectedPiece.xPixelPos=e.getX()-32;
-            //         //     selectedPiece.yPixelPos=e.getY()-32;
-            //         //     frame.repaint();
-            //         // }
-                    
-            //     }
-                
-            //     //Changes mouse icon when hovering over a piece?
-            //     @Override
-            //     public void mouseMoved(MouseEvent e) 
-            //     {
-            //         // Piece pieceAt = getPieceAt(e.getX(), e.getY(), pieceList);
-            //         Piece pieceAt = board [(e.getX())/64][ (e.getY())/64 ];
-            //         if (pieceAt != null) {?
-            //             frame.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
-            //         } else {
-            //             frame.setCursor(java.awt.Cursor.getDefaultCursor());
-            //         }
-            //     }
-            // });
-
-            
-            // //Checks for click
-            // frame.addMouseListener(new MouseListener() {
-            //     boolean click = false;
-            //     @Override
-            //     public void mouseClicked(MouseEvent e) {
-
-            //     }
-
-                
-            //     //Selects piece that the user clicks with their mouse
-            //     @Override
-            //     public void mousePressed(MouseEvent e) {
-            //     // System.out.println((getPieceAt(e.getX(), e.getY(), pieceList).isWhite?"white ":"balck ")+getPieceAt(e.getX(), e.getY(), pieceList).pieceType);
-            //         if (!click){ 
-            //             // selectedPiece=getPieceAt(e.getX(), e.getY(), pieceList);
-            //             selectedX = (e.getX())/64;
-            //             selectedY = (e.getY())/64;
-            //             selectedPiece = board [(e.getX())/64][ (e.getY())/64 ];
-            //         }
-                    
-            //     }
-
-
-
-
-            //     @Override
-            //     public void mouseReleased(MouseEvent e) {
-                    
-                    
-            //         if (selectedX == e.getX()/64 && selectedY == e.getY()/64 && click == false){
-            //             click = true;
-            //         }
-            //         else if (click){
-            //             click = false;
-            //         }
-            //         //selectedPiece.move(e.getX()/64, e.getY()/64);
-            //         movePiece(selectedX, selectedY, e.getX()/64, e.getY()/64, );
-
-            //         frame.repaint();
-                    
-
-            //         // boolean[] kingsPresent = {false, false};
-            //         // for (Piece p: pieceList){
-            //         //     if (p.pieceType.equals("king")){
-            //         //         kingsPresent[p.isWhite ? 0 : 1 ] = true;
-            //         //     }
-            //         // }
-            //         // if (!kingsPresent[0]){displayPopup("black");}
-            //         // else if(!kingsPresent[1]){displayPopup("white");}
-
-            //         if (!click){
-            //             selectedPiece = null;
-            //             selectedX = -1;
-            //             selectedY = -1;
-            //         }        
-            //     }
-
-
-            //     @Override
-            //     public void mouseEntered(MouseEvent e) {
-            //     }
-
-            //     @Override
-            //     public void mouseExited(MouseEvent e) {
-            //     }
-            // });
-////////////////////////////////////////////////////////////////
-
-
-            // Om's work here: Print the chessboard and alternate ## to represent squares.
-            /*
-            System.out.println("  A  B  C  D  E  F  G  H");
-            for (int i = 0; i < 8; i++) {
-                System.out.print((8 - i) + " ");
-                for (int j = 0; j < 8; j++) {
-                    if (board[i][j] == null) {
-                        if ((i + j) % 2 == 0) {
-                            System.out.print("## ");
-                        } else {
-                            System.out.print("   ");
-                        }
-                    } else {
-                        System.out.print(board[i][j] + " ");
-                    }
-                }
-                System.out.println((8 - i));
-            }
-            System.out.println("  A  B  C  D  E  F  G  H");
-            System.out.print("White's captured pieces: ");
-            for(int i = 0; i < capturedPiecesW.size(); i++){
-                System.out.print(capturedPiecesW.get(i)+", ");
-                
-            }
-            System.out.println(); 
-            System.out.print("Black's captured pieces: ");
-            for(int i = 0; i < capturedPiecesB.size(); i++){
-                System.out.print(capturedPiecesB.get(i)+", ");
-            }
-            System.out.println(); 
-            */
-            
-           
-
             frame.add(pn);
             frame.setSize(512, 512);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -390,28 +234,11 @@ public class ChessBoard {
                     
                 }
             };
-            // if(isPopup[0] == 0){
                 popup.getContentPane().removeAll();
                 popup.setSize(400,150);
                 popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 popup.add(panel);
                 popup.setVisible(true);
-                // isPopup[0] = 1;
-                //System.out.print("runs first if");
-            //}
-            // else if (!(isPopup[0] == 0))
-            // {
-            //     popup.add(panel);
-            //     popup.revalidate();
-            //     popup.repaint();
-            //     System.out.print("runs if else");
-            
-            
-            //     // SwingUtilities.updateComponentTreeUI(popup);
-            // }
-
-            // popup.remove(panel);
-            
     }
 
 /**
@@ -428,7 +255,7 @@ public class ChessBoard {
     public boolean movePiece(int startX, int startY, int endX, int endY, String currentPlayer) {
         Piece piece = board[startX][startY];
         if (piece == null || !piece.color.equals(currentPlayer)) {return false;}
-        if (piece.isValidMove(startX, startY, endX, endY, board) /* && checkPath(startX, startY, endX, endY, board)*/) {
+        if (piece.isValidMove(startX, startY, endX, endY, board)) {
             // Capture or move
             if (board[endX][endY] == null || !board[endX][endY].color.equals(currentPlayer)) {
 
@@ -471,11 +298,7 @@ public class ChessBoard {
 
 
         for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 8; j++){
-                // System.out.print(i + "" + j + ", ");
-
-                //if (piece == null || !piece.color.equals(CurrentPlayer)) {return false;}
-                 
+            for (int j = 0; j < 8; j++){      
                 if (board[row][col].isValidMove(row, col, i, j, board)){
                     if (board[i][j] == null){
                         System.out.println("false, empty space");
@@ -540,67 +363,7 @@ public class ChessBoard {
         }
         return true;// No valid moves, player is stalemated
     } 
-
-
-   /* chatgpt's method
-// New Stalemate detection method
-    public boolean isStalemate(String currentPlayer) {
-        // If the current player is not in check, check for valid moves
-        if (!isInCheck(currentPlayer)) {
-            for (int x = 0; x < 8; x++) {
-                for (int y = 0; y < 8; y++) {
-                    if (board[x][y] != null && board[x][y].color.equals(currentPlayer)) {
-                        for (int a = 0; a < 8; a++) {
-                            for (int b = 0; b < 8; b++) {
-                                if (board[x][y].isValidMove(x, y, a, b, board)) {
-                                    return false; // There is a valid move
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            // No valid moves and not in check -> stalemate
-            return true;
-        }
-        return false; // Not a stalemate
-    } */
-
-
-/*  public boolean isJeopardizingKing(int startX, int startY, int endX, int endY, String color) {
-        // Get the position of the current player's king
-        int[] kingPos = getKingPos(color);
-        int kingX = kingPos[0];
-        int kingY = kingPos[1];
     
-        // Create a copy of the current board for simulation
-        Piece[][] testBoard = new Piece[8][8];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                testBoard[i][j] = board[i][j]; // Copy each piece into testBoard
-            }
-        }
-    
-        // Simulate the move on the testBoard
-        testBoard[endX][endY] = testBoard[startX][startY]; // Move the piece to the new position
-        testBoard[startX][startY] = null;                  // Empty the starting position
-    
-        // Check if the king is in check after this move
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                if (testBoard[x][y] != null && !testBoard[x][y].color.equals(color)) {
-                    // If the opponent's piece can move to the king's position, the king is in check
-                    if (testBoard[x][y].isValidMove(x, y, kingX, kingY, testBoard)) {
-                        return true; // This move would jeopardize the king
-                    }
-                }
-            }
-        }
-    
-        return false; // This move does not jeopardize the king
-    }
-    */
-
     /** 
      * Checks if a path between two positions is clear for a piece to move through.
     
