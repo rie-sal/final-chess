@@ -58,7 +58,7 @@ cd chess-game
 javac *.java
 
 
-4. Diagram
+4. Diagram:https://ibb.co/80Pbv94
 
 5. Run the game:
 
