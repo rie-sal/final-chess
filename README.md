@@ -58,8 +58,7 @@ cd chess-game
 javac *.java
 
 
-4. Diagram:https://ibb.co/80Pbv94
-
+4. Diagram:
 ![attempt](pics/umldiagram.jpg)
 
 
