@@ -60,6 +60,9 @@ javac *.java
 
 4. Diagram:https://ibb.co/80Pbv94
 
+![attempt](pics/umldiagram.jpg)
+
+
 5. Run the game:
 
 java ChessGame
