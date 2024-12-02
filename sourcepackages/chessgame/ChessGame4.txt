@@ -31,22 +31,12 @@ public static void main(String[] args) throws IOException{
         //int selectedX = -1;
         //int selectedY = -1;
 
-        final int[] selectedX = new int[1];
-        final int[] selectedY = new int[1];
+        final int[] selectedX = new int[2];
+        final int[] selectedY = new int[2];
 
         while (true) {
-            // stalemate check
-            if(board.isStalemate(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("Game over: stalemate.\n");}
-
             board.printBoard();
-            
-            if (board.isCheckmated(currentPlayer[0].equals("black") ? "black" : "white")){
-                System.out.println("Game over: " + (currentPlayer[0].equals("white") ? "black" : "white") + " wins.");
-                break;
-            }
-            // if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("King in check!");}
-
-            System.out.println(currentPlayer + "'s turn. Enter move (e.g., 'E2 E4'):");
+            // stalemate check
             
             // String move = scanner.nextLine().toUpperCase();
             // String[] moveParts = move.split(" ");
@@ -113,45 +103,17 @@ public static void main(String[] args) throws IOException{
 
 
 
-
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     if (selectedX[0] == e.getX()/64 && selectedY[0] == e.getY()/64 && click == false){click = true;}
-                    else if (click){click = false;}
+                    else if (click) {click = false;}
                     //selectedPiece.move(e.getX()/64, e.getY()/64);
-                    // movePiece(selectedX, selectedY, e.getX()/64, e.getY()/64, currentPlayer);
 
-                    if (board.movePiece(selectedY[0], selectedX[0], e.getY()/64 , e.getX()/64, currentPlayer[0])) {
-                        currentPlayer[0] = currentPlayer[0].equals("white") ? "black" : "white";
-                        if (board.isCheckmated(currentPlayer[0].equals("black") ? "black" : "white")){
-                            board.displayPopup(currentPlayer[0].equals("white") ? "black" : "white");
-                            //break;
-                        }
-                        if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("King in check!");}
-                        board.frame.repaint();
-                    } 
-                    else if (!board.movePiece(selectedY[0], selectedX[0], e.getY()/64 , e.getX()/64, currentPlayer[0])) {System.out.println("Invalid move. Try again.");}
-                    
-                    board.frame.repaint();
-                    // try {board.printBoard();} catch (IOException e1) {}//e1.printStackTrace();
-                    
-                    
-                    
+                    selectedX[1] = (e.getX())/64;
+                    selectedY[1] = (e.getY())/64;
 
-                    // boolean[] kingsPresent = {false, false};
-                    // for (Piece p: pieceList){
-                    //     if (p.pieceType.equals("king")){
-                    //         kingsPresent[p.isWhite ? 0 : 1 ] = true;
-                    //     }
-                    // }
-                    // if (!kingsPresent[0]){displayPopup("black");}
-                    // else if(!kingsPresent[1]){displayPopup("white");}
-
-                    if (!click){
-                        // selectedPiece = null;
-                        selectedX[0] = -1;
-                        selectedY[0] = -1;
-                    }        
+                    
+                           
                 }
 
 
@@ -179,13 +141,102 @@ public static void main(String[] args) throws IOException{
             //     currentPlayer = currentPlayer.equals("white") ? "black" : "white";
             // } 
 	    //    else {System.out.println("Invalid move. Try again.");}
+        if (board.movePiece(selectedX[0], selectedY[0], selectedX[1], selectedY[1], currentPlayer[0])) {
+                        //
+                        if(board.isStalemate(currentPlayer[0].equals("black") ? "black" : "white")) {System.out.println("Game over: stalemate.\n");} //break;
+                        
+                        try {board.printBoard();} catch (IOException r) {r.printStackTrace();} //break;
+
+                        if (board.isCheckmated(currentPlayer[0].equals("black") ? "black" : "white")){
+                            displayPopup(currentPlayer[0].equals("white") ? "black" : "white");
+                            // System.out.println("Game over: " + (currentPlayer[0].equals("white") ? "black" : "white") + " wins.");
+                            }
+                    
+                        else if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("King in check!");} 
+                    
+                        //
+
+                        currentPlayer[0] = currentPlayer[0].equals("white") ? "black" : "white";
+                        System.out.println(currentPlayer + "'s turn. Enter move (e.g., 'E2 E4'):");
+                        board.frame.repaint();
+                    }
+                    else {System.out.println("Invalid move. Try again.");}
+                    board.frame.repaint();
+                    
+
+                    // boolean[] kingsPresent = {false, false};
+                    // for (Piece p: pieceList){
+                    //     if (p.pieceType.equals("king")){
+                    //         kingsPresent[p.isWhite ? 0 : 1 ] = true;
+                    //     }
+                    // }
+                    // if (!kingsPresent[0]){displayPopup("black");}
+                    // else if(!kingsPresent[1]){displayPopup("white");}
+
+                    
+
+        scanner.close();
+        
+
         }
 
         // win message
         //System.out.println((currentPlayer[0].equals("white") ? "black" : "white") + "wins.");       
     
-        scanner.close();
+        
     }
+
+
+    private static void displayPopup(String winner) {
+        JFrame popup = new JFrame("game over");
+
+        popup.setSize(200,100);
+        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                g.setColor(Color.BLACK);
+                g.drawString(winner + " wins!", 50, 50);
+            }
+        };
+        popup.add(panel);
+        popup.setVisible(true);
+    }
+    /* 
+
+    private static void displayCapturedPieces() {
+        JFrame popup = new JFrame("Captured Pieces");
+
+        popup.setSize(200,150);
+        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                g.setColor(Color.BLACK);
+                g.drawString("Black Pieces Captured: " +, 50, 50);
+                g.drawString("White Pieces Captured: " +, 50, 100);
+            }
+        };
+        popup.add(panel);
+        popup.setVisible(true);
+    }
+
+            System.out.print("White's captured pieces: ");
+            for(int i = 0; i < capturedPiecesW.size(); i++){
+                System.out.print(capturedPiecesW.get(i)+", ");
+                
+            }
+            System.out.println(); 
+            System.out.print("Black's captured pieces: ");
+            for(int i = 0; i < capturedPiecesB.size(); i++){
+                System.out.print(capturedPiecesB.get(i)+", ");
+            }
+                */
+
 }
 
 

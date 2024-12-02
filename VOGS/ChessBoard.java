@@ -1,7 +1,7 @@
 
 // ChessBoard class (original, from pt 1)
-
 // package VOGS;
+import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,6 +19,10 @@ import java.util.Vector;
 import pieces.*;
 
 public class ChessBoard {
+
+    JFrame popup = new JFrame("Captured Pieces");
+
+    public int[] isPopup = new int[1];
     
     Piece[][] board = new Piece[8][8];
     public static Piece selectedPiece=null;
@@ -39,6 +43,8 @@ public class ChessBoard {
  */
 
     public void initializeBoard() {
+        isPopup[0] = 0;
+        
         // Set up the black pieces
         board[0][0] = new Rook("black");
         board[0][1] = new Knight("black");
@@ -60,6 +66,18 @@ public class ChessBoard {
         board[7][6] = new Knight("white");
         board[7][7] = new Rook("white");
         for (int i = 0; i < 8; i++) {board[6][i] = new Pawn("white");}
+
+        // board[0][0] = new Rook("black");
+        // board[0][1] = new Rook("black");
+        // board[0][2] = new Rook("black");
+        // board[0][3] = new Rook("black");
+        // board[0][4] = new Rook("black");
+
+        // board[7][0] = new Rook("white");
+        // board[7][1] = new Rook("white");
+        // board[7][2] = new Rook("white");
+        // board[7][3] = new Rook("white");
+        // board[7][4] = new Rook("white");
 
     }
 /**
@@ -315,6 +333,8 @@ public class ChessBoard {
             }
             System.out.println(); 
             */
+            
+           
 
             frame.add(pn);
             frame.setSize(512, 512);
@@ -322,6 +342,77 @@ public class ChessBoard {
             frame.setVisible(true);
                 
         }
+
+        public static void displayPopup(String winner) {
+            JFrame winPopup = new JFrame("game over");
+    
+            winPopup.setSize(200,100);
+            winPopup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    
+            JPanel panel = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    g.setColor(Color.BLACK);
+                    g.drawString(winner + " wins!", 50, 50);
+                }
+            };
+            winPopup.add(panel);
+            winPopup.setVisible(true);
+        }
+    public void deletePopup(){
+        popup.setVisible(false);
+    }
+        
+    public void updatePopup(){
+
+            String[] wPiecesAppendString = new String[1];
+            String[] bPiecesAppendString = new String[1];
+            wPiecesAppendString[0] = "";
+            bPiecesAppendString[0] = "";
+
+            for(int i = 0; i < capturedPiecesW.size(); i++){
+                wPiecesAppendString[0] += " " + capturedPiecesW.get(i);
+            }
+
+            for(int i = 0; i < capturedPiecesB.size(); i++){
+                bPiecesAppendString[0] += " " + capturedPiecesB.get(i);
+            }
+
+
+            JPanel panel = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    g.setColor(Color.BLACK);
+                    g.drawString("White Pieces Captured:" + wPiecesAppendString[0], 50, 50);
+                    g.drawString("Black Pieces Captured:" + bPiecesAppendString[0], 50, 100);
+                    
+                }
+            };
+            // if(isPopup[0] == 0){
+                popup.getContentPane().removeAll();
+                popup.setSize(400,150);
+                popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                popup.add(panel);
+                popup.setVisible(true);
+                // isPopup[0] = 1;
+                //System.out.print("runs first if");
+            //}
+            // else if (!(isPopup[0] == 0))
+            // {
+            //     popup.add(panel);
+            //     popup.revalidate();
+            //     popup.repaint();
+            //     System.out.print("runs if else");
+            
+            
+            //     // SwingUtilities.updateComponentTreeUI(popup);
+            // }
+
+            // popup.remove(panel);
+            
+    }
 
 /**
  *  The movePiece method takes input(the starting x and y cordinates of the the piece the user desires to move and then the cordinates the user wants to move the piece to).
@@ -343,14 +434,12 @@ public class ChessBoard {
 
                 // add to vector list of taken pieces
                 if (board[endX][endY] != null && !board[endX][endY].color.equals(currentPlayer)){
-                    if (currentPlayer == "white"){
-                        capturedPiecesB.add(board[endX][endY].toString());
-                    }
-                    else {capturedPiecesW.add(board[endX][endY].toString());
-                    }
-                    
+                    if (currentPlayer == "white"){capturedPiecesB.add(board[endX][endY].toString());}
+                    else {capturedPiecesW.add(board[endX][endY].toString());}
+                    deletePopup();
+                    updatePopup();
                     //numTakenPieces++;
-                } 
+                }
                     
                 board[endX][endY] = piece;
                 board[startX][startY] = null;
