@@ -35,14 +35,9 @@ Additional Features
 - Detailed feedback for invalid moves.
 - Seamless integration between the console-based backend and GUI.
 
- Screenshots
+ Screenshot/Preview GUI:
 
- Initial Game Setup:
-
- Mid-game Move Example:
-
-Endgame Checkmate Notification:
-
+ 
 
 
 
@@ -58,7 +53,9 @@ cd chess-game
 javac *.java
 
 
-4. Diagram:https://ibb.co/80Pbv94
+4. Diagram:
+![attempt](pics/umldiagram.jpg)
+
 
 5. Run the game:
 
