@@ -36,6 +36,11 @@ Additional Features
 - Seamless integration between the console-based backend and GUI.
 
  Screenshot/Preview GUI:
+![screenshot](pics/1.png)
+![screenshot](pics/2.png)
+![screenshot](pics/3.png)
+![screenshot](pics/4.png)
+
 
  
 
@@ -54,7 +59,7 @@ javac *.java
 
 
 4. Diagram:
-![attempt](pics/umldiagram.jpg)
+![uml diagram](pics/umldiagram.jpg)
 
 
 5. Run the game:
