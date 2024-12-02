@@ -105,10 +105,8 @@ public static void main(String[] args) throws IOException{
                         selectedX[0] = (e.getX())/64;
                         selectedY[0] = (e.getY())/64;
                         
-
                         // selectedPiece = board [(e.getX())/64][ (e.getY())/64 ];
                     }
-                    
                 }
 
 
@@ -127,7 +125,7 @@ public static void main(String[] args) throws IOException{
                             board.displayPopup(currentPlayer[0].equals("white") ? "black" : "white");
                             //break;
                         }
-                        if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){System.out.println("King in check!");}
+                        if ( board.isInCheck(currentPlayer[0].equals("black") ? "black" : "white")){board.displayPopup2();} //System.out.println("King in check!");
                         board.frame.repaint();
                     } 
                     else if (!board.movePiece(selectedY[0], selectedX[0], e.getY()/64 , e.getX()/64, currentPlayer[0])) {System.out.println("Invalid move. Try again.");}

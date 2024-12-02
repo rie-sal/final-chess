@@ -360,6 +360,25 @@ public class ChessBoard {
             winPopup.add(panel);
             winPopup.setVisible(true);
         }
+
+        public static void displayPopup2 () {
+            JFrame winPopup = new JFrame("king in check");
+    
+            winPopup.setSize(200,100);
+            winPopup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    
+            JPanel panel = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    g.setColor(Color.BLACK);
+                    g.drawString("king in check!", 50, 50);
+                }
+            };
+            winPopup.add(panel);
+            winPopup.setVisible(true);
+        }
+
     public void deletePopup(){
         popup.setVisible(false);
     }
