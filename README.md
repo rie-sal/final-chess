@@ -35,14 +35,9 @@ Additional Features
 - Detailed feedback for invalid moves.
 - Seamless integration between the console-based backend and GUI.
 
- Screenshots
+ Screenshot/Preview GUI:
 
- Initial Game Setup:
-
- Mid-game Move Example:
-
-Endgame Checkmate Notification:
-
+ 
 
 
 
