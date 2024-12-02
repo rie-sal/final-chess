@@ -72,4 +72,4 @@ Checklist of Achieved Features
  Stalemate Detection- Done
  Full Console Integration with GUI - Done
 
-   
+
